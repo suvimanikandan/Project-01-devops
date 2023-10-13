@@ -1,0 +1,33 @@
+---
+- name: To_install_jenkins_on_jenkins_master
+  hosts: jenkins_master
+  become: true
+  tasks: 
+    - name: To install packages 
+      script: jenkins.sh
+    
+    - name: To notify the installation
+      debug:
+        msg: "Package has been installed"
+
+- name: To install docker and java on test server
+  hosts: test_server
+  become: true
+  tasks: 
+    - name: To install Java and Docker
+      script: test.sh
+    
+    - name: To notify about the installation!
+      debug:
+        msg: "Java and Docker has been installed!"
+
+- name: To install docker and java on prod server
+  hosts: prod_server
+  become: true
+  tasks: 
+    - name: To install Java and Docker
+      script: prod.sh
+    
+    - name: To notify about the installation!
+      debug:
+        msg: "Java and Docker has been installed!"
